@@ -1,0 +1,22 @@
+.route_line{
+	background-color: #99CC00;
+  background-size: 100px 10px;
+}
+.sub_point {
+  display: inline-block;
+  text-indent: -9999px;
+  width: 25px;
+  height: 19px;
+  background: url(../../images/tag_gen/circle.svg);
+  background-size: 25px 19px;
+  vertical-align: middle;
+ }
+.main_point {
+  display: inline-block;
+  text-indent: -9999px;
+  width: 50px;
+  height: 40px;
+  background: url(../../images/tag_gen/circle.svg);
+  background-size: 50px 40px;
+  vertical-align: middle;
+}
