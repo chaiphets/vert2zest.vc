@@ -68,7 +68,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Interchange</label>
+							<label class="col-sm-2 control-label">One Side</label>
 							<div class="col-md-10">
 							<div class="btn-group" data-toggle="buttons">
 							  <label class="btn btn-primary">
