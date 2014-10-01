@@ -5,7 +5,7 @@
 
 <script type="text/javascript">
 	function redirect(){
-		history.back();
+		document.location.href = document.referrer;
 	}
 	setTimeout('redirect()',3000);
 </script>
