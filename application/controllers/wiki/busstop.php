@@ -43,7 +43,6 @@ class Busstop extends CI_Controller {
 	}
 	public function create($data=null){
 		$data['busStop'] = $this->__init();
-		// $data['exchange'] = $this->create_list($data['busStop']);
 		$this->template->load('wiki/busstop/bus_stop_detail', $data);
 	}
 	public function display($data=null){
