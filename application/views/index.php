@@ -1,6 +1,4 @@
 <link href="<?= base_url('lib/css/sidebar.css')?>" rel="stylesheet">
- <div id="wrapper">
-
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
@@ -32,11 +30,3 @@
         </div>
 
     </div>
-
-    <!-- Custom JavaScript for the Menu Toggle -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("active");
-    });
-    </script>

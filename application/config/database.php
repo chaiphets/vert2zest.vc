@@ -49,7 +49,7 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
+$db['default']['username'] = 'bjsolution_root';
 $db['default']['password'] = 'password';
 $db['default']['database'] = 'bjsolution_smartvc';
 $db['default']['dbdriver'] = 'mysql';
