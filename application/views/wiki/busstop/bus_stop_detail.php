@@ -83,7 +83,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Interchange</label>
+							<label class="col-sm-2 control-label">One Side</label>
 							<div class="col-md-10">
 								<div class="btn-group" data-toggle="buttons">
 								  <!--label class="btn btn-primary">
@@ -136,5 +136,12 @@
 			map.setCenter(latlngbounds.getCenter());
 			map.fitBounds(latlngbounds);
 		});
+		function trigger(element){
+			var txtExchange = document.getElementById(element).value;
+			if(txtExchange == '0')
+				document.getElementById(element).value = 1;
+			else
+				document.getElementById(element).value = 0;
+		}
     </script>
     <?php endif;?>
