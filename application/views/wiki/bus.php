@@ -28,7 +28,7 @@
                     	<!-- Generate Tag Form -->
                     	<div class="route">
                     		<!-- If BusStop is MainPoint then class="main_point" !-->
-                    		<!--<div class="text_point">Test</div>!-->
+                    		<!-- <div class="text_point">Test</div> !-->
                     		<a href="#" class="main_point"></a>
                     		<!-- If BusStop is **not MainPoint then class="sub_point" !-->
 							<a href="#" class="sub_point"></a>

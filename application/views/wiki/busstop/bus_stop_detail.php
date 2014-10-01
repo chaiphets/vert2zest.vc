@@ -49,20 +49,25 @@
 						<label class="col-sm-2 control-label">Interchange</label>
 							<div class="col-md-10">
 							<div class="btn-group" data-toggle="buttons">
-							  <label class="btn btn-primary">
+							  <label class="btn btn-primary <?=$exchange['bts'] ?>" onclick="trigger('txt_bts');">
 							    <input id="chk_bts" type="checkbox"> BTS
+							    <input type="hidden" id="txt_bts" value="<?=$busStop['bts']?>">
 							  </label>
-							  <label class="btn btn-primary">
+							  <label class="btn btn-primary <?=$exchange['mrt'] ?>" onclick="trigger('txt_mrt');">
 							    <input id="chk_mrt" type="checkbox"> MRT
+							    <input type="hidden" id="txt_mrt" value="<?=$busStop['mrt']?>">
 							  </label>
-							  <label class="btn btn-primary">
+							  <label class="btn btn-primary <?=$exchange['ship'] ?>" onclick="trigger('txt_ship');">
 							    <input id="chk_ship" type="checkbox"> SHIP
+							    <input type="hidden" id="txt_ship" value="<?=$busStop['ship']?>">
 							  </label>
-							  <label class="btn btn-primary">
+							  <label class="btn btn-primary <?=$exchange['airlink'] ?>" onclick="trigger('txt_airlink');">
 							    <input id="chk_airlink" type="checkbox"> Airport Link
+							    <input type="hidden" id="txt_airlink" value="<?=$busStop['airlink']?>">
 							  </label>
-							  <label class="btn btn-primary">
+							  <label class="btn btn-primary <?=$exchange['brt'] ?>" onclick="trigger('txt_brt');">
 							    <input id="chk_brt" type="checkbox"> BRT
+							    <input type="hidden" id="txt_brt" value="<?=$busStop['brt']?>">
 							  </label>
 							</div>
 							</div>
@@ -71,8 +76,9 @@
 							<label class="col-sm-2 control-label">One Side</label>
 							<div class="col-md-10">
 							<div class="btn-group" data-toggle="buttons">
-							  <label class="btn btn-primary">
+							  <label class="btn btn-primary <?=$exchange['brt'] ?>" onclick="trigger('txt_brt');">
 							    <input id="chk_oneside" type="checkbox"> One Side
+							    <input type="hidden" id="txt_oneside" value="<?=$busStop['oneSide']?>">
 							  </label>
 							  </div>
 							</div>
@@ -108,5 +114,12 @@
 			map.setCenter(latlngbounds.getCenter());
 			map.fitBounds(latlngbounds);
 		});
+		function trigger(element){
+			var txtExchange = document.getElementById(element).value;
+			if(txtExchange == '0')
+				document.getElementById(element).value = 1;
+			else
+				document.getElementById(element).value = 0;
+		}
     </script>
     <?php endif;?>
