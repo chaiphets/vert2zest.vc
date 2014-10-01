@@ -25,18 +25,18 @@
 .sub_point {
   display: inline-block;
   text-indent: -9999px;
-  width: 20px;
+  width: 15px;
   height: 15px;
   background: url(../../images/tag_gen/circle.svg);
-  background-size: 25px 15px;
+  background-size: 15px 15px;
   vertical-align: middle;
  }
 .main_point {
   display: inline-block;
   text-indent: -9999px;
-  width: 55px;
+  width: 50px;
   height: 50px;
   background: url(../../images/tag_gen/circle.svg);
-  background-size: 60px 50px;
+  background-size: 50px 50px;
   vertical-align: middle;
 }
