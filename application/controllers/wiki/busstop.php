@@ -35,14 +35,15 @@ class Busstop extends CI_Controller {
 		$busStop['longtitude'] = null;
 		$busStop['bts'] = 0;
 		$busStop['mrt'] = 0;
-		$busStop['airlink'] = 0;
 		$busStop['ship'] = 0;
+		$busStop['airlink'] = 0;
 		$busStop['brt'] = 0;
+		$busStop['one_side'] = 0;
 		return $busStop;
 	}
 	public function create($data=null){
 		$data['busStop'] = $this->__init();
-		$data['exchange'] = $this->create_list($data['busStop']);
+		// $data['exchange'] = $this->create_list($data['busStop']);
 		$this->template->load('wiki/busstop/bus_stop_detail', $data);
 	}
 	public function display($data=null){
@@ -72,8 +73,6 @@ class Busstop extends CI_Controller {
 			return;
 		}
 		
-		var_dump($busStop);
-		
 		if($busStop['busstop_no'] == "")
 			$busStop = $this->bus_stop->create($busStop);
 		else
@@ -96,16 +95,5 @@ class Busstop extends CI_Controller {
 		$this->bus_stop->delete($busStops['busstop_no']);
 		// $this->template->load('templates/success');
 		$this->output->set_output(json_encode(array('responseCode' => 1)));
-	}
-	private function create_list($data){
-		$ex_array = ['bts','mrt','ship','airlink','brt'];
-		foreach($ex_array as $ex)
-		{
-			if($data[$ex] == 1)
-				$flag[$ex] = "active";
-			else
-				$flag[$ex] = "";
-		}
-		return $flag;
 	}
 }
