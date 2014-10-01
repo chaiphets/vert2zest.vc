@@ -15,13 +15,29 @@ class Bus_stop extends CI_Model {
 		
 		return $query->result_array();
 	}
+	function reconstrutBusStop($busStop){
+		foreach ($busStop as $key => $value) {
+			if($value == "")
+				$busStop[$key] = null;
+		}
+		$keys = array('bts','mrt','ship','airlink','brt','one_side');
+		foreach ($keys as $key) {
+			if($busStop[$key] == "1")
+				$busStop[$key] = true;
+			else if($busStop[$key] == "0")
+				$busStop[$key] = false;
+		}
+		return $busStop;
+	}
 	function create($busStop){
+		$busStop = $this->reconstrutBusStop($busStop);
 		$this->load->model('model_utils');
 		$busStop['busstop_no'] = $this->model_utils->getNextId('BusStop','busstop_no');
 		$this->db->insert('BusStop', $busStop);
 		return $busStop;
 	}
 	function update($busStop){
+		$busStop = $this->reconstrutBusStop($busStop);
 		$this->db->where('busstop_no', $busStop['busstop_no']);
 		$this->db->update('BusStop', $busStop);
 		return $busStop;

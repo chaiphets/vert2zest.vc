@@ -57,6 +57,7 @@ class Busstop extends CI_Controller {
 		if(empty($busStop))
 			show_404();
 		$data['busStop'] = $busStop;
+		var_dump($busStop);
 		$this->template->load('wiki/busstop/bus_stop_detail', $data);
 	}
 	public function save($data=null){
@@ -65,6 +66,8 @@ class Busstop extends CI_Controller {
 			$this->create();
 			return;
 		}
+		
+		var_dump($busStop);
 		
 		if($busStop['busstop_no'] == "")
 			$busStop = $this->bus_stop->create($busStop);

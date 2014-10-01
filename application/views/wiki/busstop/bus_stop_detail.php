@@ -48,33 +48,51 @@
 						<div class="form-group">
 						<label class="col-sm-2 control-label">Interchange</label>
 							<div class="col-md-10">
-							<div class="btn-group" data-toggle="buttons">
-							  <label class="btn btn-primary">
-							    <input id="chk_bts" type="checkbox"> BTS
-							  </label>
-							  <label class="btn btn-primary">
-							    <input id="chk_mrt" type="checkbox"> MRT
-							  </label>
-							  <label class="btn btn-primary">
-							    <input id="chk_ship" type="checkbox"> SHIP
-							  </label>
-							  <label class="btn btn-primary">
-							    <input id="chk_airlink" type="checkbox"> Airport Link
-							  </label>
-							  <label class="btn btn-primary">
-							    <input id="chk_brt" type="checkbox"> BRT
-							  </label>
-							</div>
+								<div class="btn-group" data-toggle="buttons">
+								  <!--label class="btn btn-primary">
+								    <input id="chk_bts" type="checkbox" value="<?=$busStop['bts']?>"> BTS
+								  </label>
+								  <label class="btn btn-primary">
+								    <input id="chk_mrt" type="checkbox"> MRT
+								  </label>
+								  <label class="btn btn-primary">
+								    <input id="chk_ship" type="checkbox"> SHIP
+								  </label>
+								  <label class="btn btn-primary">
+								    <input id="chk_airlink" type="checkbox"> Airport Link
+								  </label>
+								  <label class="btn btn-primary">
+								    <input id="chk_brt" type="checkbox"> BRT
+								  </label-->
+									<button type="button" class="btn btn-primary bit-checkbox <?=($busStop['bts']==1)?"active":""?>">
+										BTS<input type="hidden" name="bts" value="<?=$busStop['bts']?>" />
+									</button>
+									<button type="button" class="btn btn-primary bit-checkbox <?=($busStop['mrt']==1)?"active":""?>">
+										MRT<input type="hidden" name="mrt" value="<?=$busStop['mrt']?>" />
+									</button>
+									<button type="button" class="btn btn-primary bit-checkbox <?=($busStop['ship']==1)?"active":""?>">
+										SHIP<input type="hidden" name="ship" value="<?=$busStop['ship']?>" />
+									</button>
+									<button type="button" class="btn btn-primary bit-checkbox <?=($busStop['airlink']==1)?"active":""?>">
+										Airport Link<input type="hidden" name="airlink" value="<?=$busStop['airlink']?>" />
+									</button>
+									<button type="button" class="btn btn-primary bit-checkbox <?=($busStop['brt']==1)?"active":""?>">
+										BRT<input type="hidden" name="brt" value="<?=$busStop['brt']?>" />
+									</button>
+								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Interchange</label>
 							<div class="col-md-10">
-							<div class="btn-group" data-toggle="buttons">
-							  <label class="btn btn-primary">
-							    <input id="chk_oneside" type="checkbox"> One Side
-							  </label>
-							  </div>
+								<div class="btn-group" data-toggle="buttons">
+								  <!--label class="btn btn-primary">
+								    <input id="chk_oneside" type="checkbox"> One Side
+								  </label-->
+									<button type="button" class="btn btn-primary bit-checkbox <?=($busStop['one_side']==1)?"active":""?>">
+										One Side<input type="hidden" name="one_side" value="<?=$busStop['one_side']?>" />
+									</button>
+								</div>
 							</div>
 						</div>
 						<br/>
@@ -93,6 +111,16 @@
 			</div>
 		</div>
 	</div>
+	
+	<script>
+		$('button.bit-checkbox').click(function(){
+			if($(this).hasClass('active')){
+				$('input',this).val('0');
+			} else {
+				$('input',this).val('1');
+			}
+		});
+	</script>
 	
     <?php if($busStop['busstop_no'] != null):?>
     <script language="JavaScript"  type="application/javascript">
