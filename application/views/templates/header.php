@@ -9,7 +9,7 @@
 	
 	<script type="text/javascript" src="<?=base_url('lib/scripts/jquery-1.11.1.min.js')?>"></script>
 	<script type="text/javascript" src="<?=base_url('lib/scripts/less-1.7.3.min.js')?>"></script>
-	<script type="text/javascript" src="<?=base_url('lib/scripts/oneSimpleTablePaging-1.0.js')?>"></script>
+	<script type="text/javascript" src="<?=base_url('lib/scripts/jquery.twbsPagination.min.js')?>"></script>
 	<script type="text/javascript" src="<?=base_url('lib/bootstrap/js/bootstrap.min.js')?>"></script>
 	
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmYj3D3YACcRSyTvMTTWS0XDxNp5ctObM&libraries=places"></script>

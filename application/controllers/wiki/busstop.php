@@ -6,7 +6,7 @@ class Busstop extends CI_Controller {
 		parent::__construct();
 		$this->load->model('wiki/bus_stop');
 		$this->load->helper("url");
-        $this->load->library("pagination");
+        $this->load->library("paginations");
 	}
 	public function index($data=null){
 		$this->template->load('wiki/busstop/bus_stop', $data);
@@ -49,12 +49,20 @@ class Busstop extends CI_Controller {
 		$filter = $this->input->post();
 		if($filter == false){
 			$data['filter'] = $this->__init();
+			$data['paging'] = $this->paginations->prepareFilter();
 			$this->template->load('wiki/busstop/bus_stop_list', $data);
 			return;
 		}
 		
-		$data['filter'] = $filter;
-		$data['busStops'] = $this->bus_stop->search($filter);
+		// $filter = $pagination->filter;
+		$pagination = $this->paginations->prepareFilter($filter);
+		
+		// $data['busStops'] = $this->bus_stop->search($filter);
+		$pagination = $this->bus_stop->searchWithPaging($pagination);
+		
+		$data['filter'] = $pagination->filter;
+		$data['paging'] = $pagination;
+		$data['busStops'] = $pagination->data;
 		
 		$this->template->load('wiki/busstop/bus_stop_list', $data);
 	}

@@ -53,15 +53,20 @@ class Bus_stop extends CI_Model {
 		$query = $this->db->get_where('BusStop', array('busstop_no'=>$busStopId));
 		return $query->row_array();
 	}
-	function search($filter){
+	function search($filter, $pageSize = null, $offsetItem = null){
 		foreach ($filter as $key => $value) {
 			if($value == "")
 				unset($filter[$key]);
 			else
 				$this->db->like($key, $value);
 		}
-		$query = $this->db->get('BusStop');
+		$query = $this->db->get('BusStop', $pageSize, $offsetItem);
 		return $query->result_array();
+	}
+	function searchWithPaging($pagination){
+		$pagination->paging($this->record_count($pagination->filter));
+		$pagination->data = $this->search($pagination->filter, $pagination->pageSize, $pagination->offsetItem);
+		return $pagination;
 	}
 	public function record_count($filter) {
         return count($this->search($filter));

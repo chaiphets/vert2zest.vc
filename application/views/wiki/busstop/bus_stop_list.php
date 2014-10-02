@@ -39,6 +39,8 @@
 								<button type="reset" class="btn btn-default">Clear</button>
 							</div>
 						</div>
+						<input type="hidden" name="paging_pagesize" id="paging_pagesize" value="<?=$paging->pageSize?>" />
+						<input type="hidden" name="paging_currentpage" id="paging_currentpage" value="<?=$paging->currentPage?>" />
 					</form>
 				</div>
 			</div>
@@ -102,6 +104,25 @@
 				</div>
 			</div>
 			
+			<div clas="row">
+				<div class="col-xs-12 col-sm-4 col-md-3">
+					<div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+							<?=$paging->pageSize?> records per page <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<?php foreach ($paging->pageSizeList as $key => $pageSize):?>
+								<li><a href="javascript:changePageSize(<?=$pageSize?>);"><?=$pageSize?></a></li>
+							<?php endforeach;?>
+							<li><a href="javascript:changePageSize(0);">Show All</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-8 col-md-9">
+					<ul id="pagination-demo" class="pagination-sm" style="margin: auto;"></ul>
+				</div>
+			</div>
+			
 			
 	        <?php if(isset($result) && !empty($result)):?>
 			<div class="row" style="margin-left: auto;margin-right: auto;">
@@ -141,9 +162,21 @@
 		</div>
 	</div>	
 	<script>
-
+		function changePageSize(pageSize){
+			$('#paging_pagesize').val(pageSize);
+			$('#paging_currentpage').val(1);
+			$('#searchBusStopForm').submit();
+		}
 		$(function(){
-			$('#main-table').oneSimpleTablePagination({rowsPerPage: 20});
+			$('#pagination-demo').twbsPagination({
+				totalPages: <?=$paging->totalPage?>,
+				startPage: <?=$paging->currentPage?>, 
+		        // visiblePages: 7,
+		        onPageClick: function (event, page) {
+		        	$('#paging_currentpage').val(page);
+		        	$('#searchBusStopForm').submit();
+		        }
+		    });
 			// $('#deleteBtn').click(function(){
 				// if($('input[type=checkbox]:checked').length == 0){
 					// alert('No bus stop is selected');
