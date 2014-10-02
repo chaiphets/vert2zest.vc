@@ -31,6 +31,8 @@ class Bus_stop extends CI_Model {
 	}
 	function create($busStop){
 		$busStop = $this->reconstrutBusStop($busStop);
+		date_default_timezone_set('Asia/Bangkok');
+		$busStop['create_date'] = date('Y-m-d H:i:s');
 		$this->load->model('model_utils');
 		$busStop['busstop_no'] = $this->model_utils->getNextId('BusStop','busstop_no');
 		$this->db->insert('BusStop', $busStop);
@@ -38,6 +40,8 @@ class Bus_stop extends CI_Model {
 	}
 	function update($busStop){
 		$busStop = $this->reconstrutBusStop($busStop);
+		date_default_timezone_set('Asia/Bangkok');
+		$busStop['update_date'] = date('Y-m-d H:i:s');
 		$this->db->where('busstop_no', $busStop['busstop_no']);
 		$this->db->update('BusStop', $busStop);
 		return $busStop;
