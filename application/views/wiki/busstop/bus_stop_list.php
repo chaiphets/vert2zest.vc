@@ -44,9 +44,23 @@
 					</form>
 				</div>
 			</div>
-			
-			<br><br>
-			
+			<br>
+			<div class="row">
+				<div class="col-md-12 pull-right">
+					<div class="btn-group">
+						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+							<?=$paging->pageSize?> records per page <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<?php foreach ($paging->pageSizeList as $key => $pageSize):?>
+								<li><a href="javascript:changePageSize(<?=$pageSize?>);"><?=$pageSize?></a></li>
+							<?php endforeach;?>
+							<li><a href="javascript:changePageSize(0);">Show All</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<br>
 			<div class="row" style="margin-left: auto;margin-right: auto;">
 				<div class="table-responsive">
                     <!--form class="form-horizontal" role="form" method="post" action="<?=site_url('wiki/busstop/delete')?>"-->
@@ -103,27 +117,11 @@
                    	 <!--/form-->
 				</div>
 			</div>
-			
 			<div clas="row">
-				<div class="col-xs-12 col-sm-4 col-md-3">
-					<div class="btn-group">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-							<?=$paging->pageSize?> records per page <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" role="menu">
-							<?php foreach ($paging->pageSizeList as $key => $pageSize):?>
-								<li><a href="javascript:changePageSize(<?=$pageSize?>);"><?=$pageSize?></a></li>
-							<?php endforeach;?>
-							<li><a href="javascript:changePageSize(0);">Show All</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-8 col-md-9">
+				<div class="col-md-12 text-center">
 					<ul id="pagination-demo" class="pagination-sm" style="margin: auto;"></ul>
 				</div>
-			</div>
-			
-			
+			</div>			
 	        <?php if(isset($result) && !empty($result)):?>
 			<div class="row" style="margin-left: auto;margin-right: auto;">
 	            <div class="col-md-12">
