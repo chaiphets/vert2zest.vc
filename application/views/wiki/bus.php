@@ -16,7 +16,7 @@
         <div id="page-content-wrapper">
             <div class="content-header">
                 <h1>
-                    <a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a>
+                    <a id="menu-toggle" href="#" class="btn btn-default btn-lg"><i class="icon-reorder"><span class="glyphicon glyphicon-align-justify"></span></i></a>
                     Bus Information
                 </h1>
             </div>

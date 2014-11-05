@@ -1,7 +1,7 @@
 <link href="<?= base_url('lib/css/sidebar.css')?>" rel="stylesheet">
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
+            <ul class="sidebar-nav" role="tablist">
                 <li class="sidebar-brand"><a href="../authen/login"><img class="logo_top" src="<?= base_url('images/logo_nobg.png')?>" alt=""></a>
                 </li>
                 <li><a href="../wiki/busstop">Bus Stop Information</a>
@@ -15,7 +15,7 @@
         <div id="page-content-wrapper">
             <div class="content-header">
                 <h1>
-                    <a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a>
+                    <a id="menu-toggle" href="#" class="btn btn-default btn-lg"><i class="icon-reorder"><span class="glyphicon glyphicon-align-justify"></span></i></a>
                     SmartVC Dashboard
                 </h1>
             </div>

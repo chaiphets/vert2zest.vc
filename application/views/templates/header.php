@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>SmartVC</title>
 	
-	<link href="<?=base_url('lib/bootstrap/css/bootstrap.css')?>" rel="stylesheet">
+	<link href="<?=base_url('lib/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
 	
 	<script type="text/javascript" src="<?=base_url('lib/scripts/jquery-1.11.1.min.js')?>"></script>
 	<script type="text/javascript" src="<?=base_url('lib/scripts/less-1.7.3.min.js')?>"></script>

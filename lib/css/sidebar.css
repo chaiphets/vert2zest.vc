@@ -7,7 +7,7 @@
   margin-left: -250px;
   left: 250px;
   width: 250px;
-  background: #000;
+  background: #0D47A1;
   position: fixed;
   height: 100%;
   overflow-y: auto;
@@ -34,7 +34,7 @@
 }
 
 .sidebar-nav li a {
-  color: #999999;
+  color: #E1F5FE;
   display: block;
   text-decoration: none;
 }
@@ -74,6 +74,7 @@
 .content-header {
   height: 65px;
   line-height: 65px;
+  display: inline-block;
 }
 
 .content-header h1 {
@@ -127,4 +128,8 @@ body {
 .inset {
   padding: 15px;
 }
+.btn-default{
+	background-color:#009688;	
 }
+}
+

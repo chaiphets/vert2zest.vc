@@ -1,7 +1,8 @@
 <!-- Page content -->
 <div id="page-content-wrapper">
 	<div class="content-header">
-		<h1><a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a><?=($busStop['busstop_no'] == null) ? 'Create' : 'Update' ?>
+		<h1><a id="menu-toggle" href="#" class="btn btn-default btn-lg"><i class="icon-reorder"><span class="glyphicon glyphicon-align-justify"></span></i></a>
+			<?=($busStop['busstop_no'] == null) ? "Create" : "Update" ?>
 		</h1>
 	</div>
 	<!-- Keep all page content within the page-content inset div! -->
