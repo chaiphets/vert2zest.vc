@@ -7,6 +7,6 @@ class Bus extends CI_Controller {
 		//$this->load->model('wiki/bus');
 	}
 	public function index($data=null){
-		$this->template->load('wiki/bus', $data);
+		$this->template->load('wiki/bus/bus', $data);
 	}
 }
