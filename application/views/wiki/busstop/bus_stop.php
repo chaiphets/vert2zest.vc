@@ -13,7 +13,7 @@
                     <!-- Search Criteria -->
                     <?=form_open('wiki/busstop/search')?>
                     <input type="hidden" name="searchBusStop" />
-                    <p class="well">Search :  <input type="text" id="txt_search" name="busstop_name" value="<?=isset($filter)&&isset($filter['busstop_name'])?$filter['busstop_name']:'';?>" required />  <input type="submit" /></p>
+                    <p class="well"><label class="control-label">Bus Stop</label><input type="text" id="txt_search" name="busstop_name" value="<?=isset($filter)&&isset($filter['busstop_name'])?$filter['busstop_name']:'';?>" placeHolder="ชื่อป้าย" required class="form-control" />  <input type="submit" value="Search" class="btn btn-default" /></p>
 					</form>
 				</div>
 				<div class="col-md-6">
@@ -21,7 +21,7 @@
                     <!--?=form_open('wiki/busstop/search')?>
                     
 					</form-->
-					<p class="well">Place :  <input type="text" id="txt_place" name="place" value="<?=isset($filter)&&isset($filter['place'])?$filter['place']:'';?>" required />  <input type="submit" id="searchPlaceBtn" /></p>
+					<p class="well"><label class="control-label">Place</label><input type="text" id="txt_place" name="place" value="<?=isset($filter)&&isset($filter['place'])?$filter['place']:'';?>" required class="form-control" />  <input type="submit" id="searchPlaceBtn" value="Search" class="btn btn-default" /></p>
 				</div>
 			</div>
 			
