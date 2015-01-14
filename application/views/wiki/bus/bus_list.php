@@ -1,0 +1,193 @@
+<!-- Sidebar -->
+<div id="sidebar-wrapper">
+  <ul class="sidebar-nav">
+    <li class="sidebar-brand"><a href="<?=site_url('authen/login')?>"><img class="logo_top" src="<?= base_url('images/logo_nobg.png')?>" alt=""></a>
+    </li>
+    <li><a href="<?=site_url('wiki/busstop/')?>">Bus Stop Information</a></li>
+    <li class="active"><a href="<?=site_url('wiki/bus')?>">Bus Information</a>
+      <ul>
+        <li>
+          <a href="<?=site_url('wiki/bus/create')?>">New</a>
+        </li>
+        <li>
+          <a href="<?=site_url('wiki/bus/display')?>">Bus List</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    <!-- Page content -->
+    <div id="page-content-wrapper">
+        <div class="content-header">
+            <h1>
+                <a id="menu-toggle" href="#" class="btn btn-default btn-lg"><i class="icon-reorder"><span class="glyphicon glyphicon-align-justify"></span></i></a>
+                Maintain Bus
+            </h1>
+        </div>
+
+        <!-- Keep all page content within the page-content inset div! -->
+        <div class="page-content inset">
+            <div class="row" style="margin-left: auto;margin-right: auto;">
+            	<!-- Search Criteria -->
+            	<div class="col-md-12">
+					<form class="form-horizontal" role="form" id="searchBusStopForm" method="post" action="<?=site_url('wiki/bus/display')?>">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Bus Name</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" id="txt_name" name="busstop_name" placeHolder="Bus Stop Name" value="<?=$filter['busstop_name']?>" />
+							</div>
+							<label class="col-sm-3 control-label">Bus Thai Name</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" id="txt_new_name" name="busstop_new_name" placeHolder="Bus Stop New Name" value="<?=$filter['busstop_new_name']?>" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Bus English Name</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" id="txt_local_name" name="busstop_th_name" placeHolder="Bus Stop Thai Name" value="<?=$filter['busstop_th_name']?>" />
+							</div>
+						</div>
+						<div class"form-group">
+							<div class="col-md-12 text-center">
+								<button type="submit" class="btn btn-default">Search</button>
+								<button type="reset" class="btn btn-default">Clear</button>
+							</div>
+						</div>
+						<input type="hidden" name="paging_pagesize" id="paging_pagesize" value="<?=$paging->pageSize?>" />
+						<input type="hidden" name="paging_currentpage" id="paging_currentpage" value="<?=$paging->currentPage?>" />
+					</form>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12 pull-right">
+					<div class="btn-group">
+						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+							<?=$paging->pageSize?> records per page <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<?php foreach ($paging->pageSizeList as $key => $pageSize):?>
+								<li><a href="javascript:changePageSize(<?=$pageSize?>);"><?=$pageSize?></a></li>
+							<?php endforeach;?>
+							<li><a href="javascript:changePageSize(0);">Show All</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row" style="margin-left: auto;margin-right: auto;">
+				<div class="table-responsive">
+                    <!--form class="form-horizontal" role="form" method="post" action="<?=site_url('wiki/busstop/delete')?>"-->
+                          <!-- Table -->
+                          <table id="main-table" class="table table-condensed table-striped table-bordered table-hover no-margin breadcrumb">
+                            <thead>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>New Name</th>
+                                <th>Thai Name</th>
+                                <th>Road Name</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                                <!--<th>Delete</th>!-->
+                            </thead>
+                            <tbody>
+                            <?php if(isset($busStops)):?>
+                            <?php foreach ($busStops as $key => $busStop):?>
+                            <tr>
+                                <td>
+                                	<?=$busStop['busstop_no']?>
+                                </td>
+                                <td>
+                                	<a href="<?=site_url('wiki/busstop/show/'.$busStop['busstop_no'])?>" target="_blank">
+                                	<?=$busStop['busstop_name']?>
+                                	</a>
+                                </td>
+                                <td><?=$busStop['busstop_new_name']?></td>
+                                <td><?=$busStop['busstop_th_name']?></td>
+                                <td><?=$busStop['road_name']?></td>
+                                <td><?=$busStop['latitude']?></td>
+                                <td><?=$busStop['longtitude']?></td>
+                                <!--<td>
+								  	<div class="checkboxFive">
+								  		<input type="checkbox" value="<?=$busStop['busstop_no']?>" name="busstop_no[]" />
+									  	<!--label for="checkboxFiveInput"></label-->
+								  	<!--</div>
+								</td>!-->
+                            </tr>
+                            <?php endforeach;?>
+                            <?php endif;?>
+                            <tr>
+                            	<td></td>
+                            	<td></td>
+                            	<td></td>
+                            	<td></td>
+                            	<td></td>
+                            	<td></td>
+                            	<td></td>
+                            	<!--<td><button type="submit" class="btn btn-danger" id="deleteBtn">Delete</button></td> !-->
+                            </tr>
+                          	</tbody>
+                          </table>
+                   	 <!--/form-->
+				</div>
+			</div>
+			<div clas="row">
+				<div class="col-md-12 text-center">
+					<ul id="pagination-demo" class="pagination-sm" style="margin: auto;"></ul>
+				</div>
+			</div>
+	        <?php if(isset($result) && !empty($result)):?>
+			<div class="row" style="margin-left: auto;margin-right: auto;">
+	            <div class="col-md-12">
+	                <!-- Search Result -->
+	                <div id="no-more-tables" style="display:none;" class="table-responsive"><b>Result</b><br/><br/>
+					<table class="table table-striped table-bordered table-condensed">
+						<thead>
+							<tr>
+								<th>Bus Stop ID</th>
+								<th>Bus Stop Name</th>
+								<th>Bus Stop New Name</th>
+								<th>Road Name</th>
+								<th>Lat.</th>
+								<th>Long.</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach($result as $row):?>
+								<tr>
+									<td data-title="Bus Stop ID"><?=$row['busstop_no'] ?></td>
+									<td data-title="Bus Stop Name"><?=$row['busstop_name'] ?></td>
+									<td data-title="Bus Stop New Name"><?=$row['busstop_new_name'] ?></td>
+									<td data-title="Road Name"><?=$row['road_name'] ?></td>
+									<td data-title="Latitude"><?=$row['latitude'] ?></td>
+									<td data-title="Longtitude"><?=$row['longtitude'] ?></td>
+								</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+	                </div>
+				</div>
+			</div>
+			<?php elseif(isset($result) && empty($result)): ?>
+				No Result
+			<?php endif; ?>
+		</div>
+	</div>
+	<script>
+		function changePageSize(pageSize){
+			$('#paging_pagesize').val(pageSize);
+			$('#paging_currentpage').val(1);
+			$('#searchBusStopForm').submit();
+		}
+		$(function(){
+			$('#pagination-demo').twbsPagination({
+				totalPages: <?=$paging->totalPage?>,
+				startPage: <?=$paging->currentPage?>,
+		        // visiblePages: 7,
+		        onPageClick: function (event, page) {
+		        	$('#paging_currentpage').val(page);
+		        	$('#searchBusStopForm').submit();
+		        }
+		    });
+		});
+	</script>
