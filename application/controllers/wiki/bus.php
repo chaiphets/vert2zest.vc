@@ -4,12 +4,15 @@ class Bus extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		//$this->load->model('wiki/bus');
+		$this->load->model('wiki/busModel');
+		$this->load->helper("url");
+		$this->load->library("paginations");
 	}
 	public function index($data=null){
 		$this->template->load('wiki/bus/bus', $data);
 	}
 	private function __init(){
+		$bus['bus_id'] = null;
 		$bus['bus_no'] = null;
 		$bus['bus_name_th'] = null;
 		$bus['bus_name_eng'] = null;
@@ -34,11 +37,13 @@ class Bus extends CI_Controller {
 			$this->create();
 			return;
 		}
-
-		if($busStop['bus_no'] == "")
-		$bus = $this->bus->create($bus);
-		else
-		$bus = $this->bus->update($bus);
+		/*	if there is no bus exist in database, this will create new one	*/
+		if($bus['bus_id'] == ""){
+			$bus = $this->busModel->create($bus);
+		}
+		else{
+			$bus = $this->busModel->update($bus);
+		}
 		$this->template->load('templates/success');
 	}
 }

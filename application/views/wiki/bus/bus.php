@@ -3,8 +3,8 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand"><a href="<?=site_url('authen/login')?>"><img class="logo_top" src="<?= base_url('images/logo_nobg.png')?>" alt=""></a>
                 </li>
-                <li><a href="<?=site_url('wiki/busstop/')?>">Bus Stop Information</a></li>
-                <li class="active"><a href="<?=site_url('wiki/bus')?>">Bus Information</a>
+                <li><a href="../wiki/busstop"><img width="32px" src="<?= base_url('images/busstop_icon.png')?>" /> Bus Stop Information</a></li>
+                <li class="active"><a href="<?=site_url('wiki/bus')?>"><img width="32px" src="<?= base_url('images/bus_icon.png')?>" /> Bus Information</a>
                     <ul>
                         <li>
                             <a href="<?=site_url('wiki/bus/create')?>">New</a>
@@ -29,7 +29,7 @@
               <div class="row" style="margin-left: auto;margin-right: auto;">
                 <div class="col-md-6">
                   <!-- Search Criteria -->
-                  <?=form_open('wiki/busstop/search')?>
+                  <?=form_open('wiki/bus/search')?>
                   <input type="hidden" name="searchBusStop" />
                   <p class="well"><label class="control-label">Bus Stop</label><input type="text" id="txt_search" name="busstop_name" value="<?=isset($filter)&&isset($filter['busstop_name'])?$filter['busstop_name']:'';?>" placeHolder="ชื่อสาย" required class="form-control" />  <input type="submit" value="Search" class="btn btn-default" /></p>
                 </form>

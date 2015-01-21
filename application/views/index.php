@@ -4,9 +4,9 @@
             <ul class="sidebar-nav" role="tablist">
                 <li class="sidebar-brand"><a href="../authen/login"><img class="logo_top" src="<?= base_url('images/logo_nobg.png')?>" alt=""></a>
                 </li>
-                <li><a href="../wiki/busstop">Bus Stop Information</a>
+                <li><a href="../wiki/busstop"><img width="32px" src="<?= base_url('images/busstop_icon.png')?>" /> Bus Stop Information</a>
                 </li>
-                <li><a href="../wiki/bus">Bus Information</a>
+                <li><a href="../wiki/bus"><img width="32px" src="<?= base_url('images/bus_icon.png')?>" /> Bus Information</a>
                 </li>
             </ul>
         </div>
