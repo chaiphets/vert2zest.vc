@@ -1,44 +1,42 @@
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand"><a href="<?=site_url('authen/login')?>"><img class="logo_top" src="<?= base_url('images/logo_nobg.png')?>" alt=""></a>
-                </li>
-                <li><a href="<?=site_url('wiki/busstop/')?>">Bus Stop Information</a></li>
-                <li class="active"><a href="<?=site_url('wiki/bus')?>">Bus Information</a>
-                    <ul>
-                        <li>
-                            <a href="<?=site_url('wiki/bus/create')?>">New</a>
-                        </li>
-                        <li>
-                            <a href="<?=site_url('wiki/bus/display')?>">Bus List</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand"><a href="<?=site_url('authen/login')?>"><img class="logo_top" src="<?= base_url('images/logo_nobg.png')?>" alt=""></a>
+        </li>
+        <li><a href="<?=site_url('wiki/busstop') ?>"><img width="32px" src="<?= base_url('images/busstop_icon.png')?>" /> Bus Stop Information</a></li>
+        <li class="active"><a href="<?=site_url('wiki/bus')?>"><img width="32px" src="<?= base_url('images/bus_icon.png')?>" /> Bus Information</a>
+          <ul>
+            <li>
+              <a href="<?=site_url('wiki/bus/create')?>">New</a>
+            </li>
+            <li>
+              <a href="<?=site_url('wiki/bus/display')?>">Bus List</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
 <!-- Page content -->
 <div id="page-content-wrapper">
 	<div class="content-header">
 		<h1><a id="menu-toggle" href="#" class="btn btn-default btn-lg"><i class="icon-reorder"><span class="glyphicon glyphicon-align-justify"></span></i></a>
-			<?=($bus['bus_no'] == null) ? "Create" : "Update" ?>
+			<?=($bus['bus_id'] == null) ? "Create" : "Update" ?>
 		</h1>
 	</div>
 	<!-- Keep all page content within the page-content inset div! -->
 	<div class="page-content inset">
 		<div class="row" style="margin-left: auto;margin-right: auto;">
-			<?php if($bus['bus_no'] != null):
+			<?php if($bus['bus_id'] != null):
 			?>
 			<div class="col-md-12">
-				<div id="map-canvas" style="height: 400px; width: 100%;"></div>
-				<br/>
-				<br/>
+				<!-- Bus Stop Mapping -->
 			</div>
 			<?php endif; ?>
 			<div class="col-md-12">
-				<form class="form-horizontal" role="form" method="post" action="<?=site_url('wiki/busstop/save') ?>">
-					<input type="hidden" name="bus_no" value="<?=$bus['bus_no'] ?>" />
+				<form class="form-horizontal" role="form" method="post" action="<?=site_url('wiki/bus/save') ?>">
+					<input type="hidden" name="bus_id" value="<?=$bus['bus_id'] ?>" />
 					<div class="form-group">
-						<label class="col-sm-2 control-label">Bus Id</label>
+						<label class="col-sm-2 control-label">Bus No.</label>
 						<div class="col-sm-4">
 							<input type="text" class="form-control" id="txt_no" name="bus_no" placeholder="Bus no" value="<?=$bus['bus_no'] ?>">
 						</div>
@@ -46,13 +44,31 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label">Bus Name</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control" id="txt_name" name="bus_name" placeholder="Bus Name" value="<?=$bus['bus_name_th'] ?>">
+							<input type="text" class="form-control" id="txt_name" name="bus_name_th" placeholder="Bus Name" value="<?=$bus['bus_name_th'] ?>">
 						</div>
 						<label class="col-sm-2 control-label">Bus English Name</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control" id="txt_newName" name="bus_eng_name" placeholder="Bus English Name" value="<?=$bus['bus_name_eng'] ?>">
+							<input type="text" class="form-control" id="txt_newName" name="bus_name_eng" placeholder="Bus English Name" value="<?=$bus['bus_name_eng'] ?>">
 						</div>
 					</div>
+          <br/>
+          <div class="table-responsive">
+            <table class="table">
+              <tr>
+              <th>No.</th>
+              <th>Bus Stop No.</th>
+              <th>Bus Stop Name</th>
+              <th>Bus Stop Thai Name</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td colspan="4"></td>
+              <td><button type="button" class="btn btn-success btn-sm">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add
+              </button></td>
+            </tr>
+            </table>
+          </div>
 					<br/>
 					<div class="form-group">
 						<div class="col-sm-offset-4 col-sm-4">
@@ -77,7 +93,7 @@
 		} else {
 			$('input', this).val('1');
 		}
-	}); 
+	});
 </script>
 
 <?php if($bus['bus_no'] != null):

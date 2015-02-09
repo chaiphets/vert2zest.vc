@@ -1,47 +1,33 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Bus extends CI_Model {
-	function searchBusStop($filter=null){
-		$filter['busstop_new_name'] = $filter['busstop_name'];
-		$filter['road_name'] = $filter['busstop_name'];
-		
+class BusModel extends CI_Model {
+	function searchBus($filter=null){
+		$filter['bus_id'] = $filter['bus_id'];
+		$filter['bus_name_th'] = $filter['bus_name_th'];
+		$filter['bus_name_eng'] = $filter['bus_name_eng'];
+
 		foreach($filter as $key => $criteria){
 			if(empty($criteria))
 				unset($filter[$key]);
 		}
-		
+
 		$this->db->or_like($filter);
-		$query = $this->db->get('BusStop');
-		
+		$query = $this->db->get('Bus');
+
 		return $query->result_array();
 	}
-	function reconstrutBus($bus){
-		foreach ($bus as $key => $value) {
-			if($value == "")
-				$bus[$key] = null;
-		}
-		foreach ($keys as $key) {
-			if($bus[$key] == "1")
-				$bus[$key] = true;
-			else if($bus[$key] == "0")
-				$bus[$key] = false;
-		}
-		return $bus;
-	}
 	function create($bus){
-		$bus = $this->reconstrutBus($bus);
 		date_default_timezone_set('Asia/Bangkok');
 		$bus['create_date'] = date('Y-m-d H:i:s');
 		$this->load->model('model_utils');
-		$bus['bus_no'] = $this->model_utils->getNextId('Bus','bus_no');
+		$bus['bus_id'] = $this->model_utils->getNextId('Bus','bus_id');
 		$this->db->insert('Bus', $bus);
 		return $bus;
 	}
 	function update($bus){
-		$bus = $this->reconstrutBusStop($bus);
 		date_default_timezone_set('Asia/Bangkok');
 		$bus['update_date'] = date('Y-m-d H:i:s');
-		$this->db->where('bus_no', $bus['bus_no']);
+		$this->db->where('bus_id', $bus['bus_id']);
 		$this->db->update('Bus', $bus);
 		return $bus;
 	}
@@ -49,11 +35,11 @@ class Bus extends CI_Model {
 		if(!is_array($busIds))
 			return;
 		foreach ($busIds as $key => $busId) {
-			$this->db->delete('Bus', array('bus_no'=>$busId));
+			$this->db->delete('Bus', array('bus_id'=>$busId));
 		}
 	}
 	function getBusById($busId){
-		$query = $this->db->get_where('Bus', array('bus_no'=>$busId));
+		$query = $this->db->get_where('Bus', array('bus_id'=>$busId));
 		return $query->row_array();
 	}
 	function search($filter, $pageSize = null, $offsetItem = null){

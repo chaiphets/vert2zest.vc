@@ -3,8 +3,8 @@
   <ul class="sidebar-nav">
     <li class="sidebar-brand"><a href="<?=site_url('authen/login')?>"><img class="logo_top" src="<?= base_url('images/logo_nobg.png')?>" alt=""></a>
     </li>
-    <li><a href="<?=site_url('wiki/busstop/')?>">Bus Stop Information</a></li>
-    <li class="active"><a href="<?=site_url('wiki/bus')?>">Bus Information</a>
+    <li><a href="<?=site_url('wiki/busstop') ?>"><img width="32px" src="<?= base_url('images/busstop_icon.png')?>" /> Bus Stop Information</a></li>
+    <li class="active"><a href="<?=site_url('wiki/bus')?>"><img width="32px" src="<?= base_url('images/bus_icon.png')?>" /> Bus Information</a>
       <ul>
         <li>
           <a href="<?=site_url('wiki/bus/create')?>">New</a>
@@ -30,21 +30,21 @@
             <div class="row" style="margin-left: auto;margin-right: auto;">
             	<!-- Search Criteria -->
             	<div class="col-md-12">
-					<form class="form-horizontal" role="form" id="searchBusStopForm" method="post" action="<?=site_url('wiki/bus/display')?>">
+					<form class="form-horizontal" role="form" id="searchbusForm" method="post" action="<?=site_url('wiki/bus/display')?>">
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Bus Name</label>
+							<label class="col-sm-3 control-label">Bus No.</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" id="txt_name" name="busstop_name" placeHolder="Bus Stop Name" value="<?=$filter['busstop_name']?>" />
-							</div>
-							<label class="col-sm-3 control-label">Bus Thai Name</label>
-							<div class="col-sm-3">
-								<input type="text" class="form-control" id="txt_new_name" name="busstop_new_name" placeHolder="Bus Stop New Name" value="<?=$filter['busstop_new_name']?>" />
+								<input type="text" class="form-control" id="txt_name" name="bus_no" placeHolder="Bus No" value="<?=$filter['bus_no']?>" />
 							</div>
 						</div>
 						<div class="form-group">
+              <label class="col-sm-3 control-label">Bus Thai Name</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" id="txt_new_name" name="bus_name_th" placeHolder="Bus Thai Name" value="<?=$filter['bus_name_th']?>" />
+              </div>
 							<label class="col-sm-3 control-label">Bus English Name</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" id="txt_local_name" name="busstop_th_name" placeHolder="Bus Stop Thai Name" value="<?=$filter['busstop_th_name']?>" />
+								<input type="text" class="form-control" id="txt_local_name" name="bus_name_eng" placeHolder="Bus Thai Name" value="<?=$filter['bus_name_eng']?>" />
 							</div>
 						</div>
 						<div class"form-group">
@@ -77,39 +77,34 @@
 			<br>
 			<div class="row" style="margin-left: auto;margin-right: auto;">
 				<div class="table-responsive">
-                    <!--form class="form-horizontal" role="form" method="post" action="<?=site_url('wiki/busstop/delete')?>"-->
+                    <!--form class="form-horizontal" role="form" method="post" action="<?=site_url('wiki/bus/delete')?>"-->
                           <!-- Table -->
                           <table id="main-table" class="table table-condensed table-striped table-bordered table-hover no-margin breadcrumb">
                             <thead>
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>New Name</th>
-                                <th>Thai Name</th>
-                                <th>Road Name</th>
-                                <th>Latitude</th>
-                                <th>Longitude</th>
-                                <!--<th>Delete</th>!-->
+                                <th>Bus No</th>
+                                <th>Bus Thai Name</th>
+                                <th>Bus English Name</th>
                             </thead>
                             <tbody>
-                            <?php if(isset($busStops)):?>
-                            <?php foreach ($busStops as $key => $busStop):?>
+                            <?php if(isset($bus)):?>
+                            <?php foreach ($bus as $key => $_bus):?>
                             <tr>
                                 <td>
-                                	<?=$busStop['busstop_no']?>
+                                  <?=$_bus['bus_id']?>
                                 </td>
                                 <td>
-                                	<a href="<?=site_url('wiki/busstop/show/'.$busStop['busstop_no'])?>" target="_blank">
-                                	<?=$busStop['busstop_name']?>
+                                	<?=$_bus['bus_no']?>
+                                </td>
+                                <td>
+                                	<a href="<?=site_url('wiki/bus/show/'.$_bus['bus_no'])?>" target="_blank">
+                                	<?=$_bus['bus_name_th']?>
                                 	</a>
                                 </td>
-                                <td><?=$busStop['busstop_new_name']?></td>
-                                <td><?=$busStop['busstop_th_name']?></td>
-                                <td><?=$busStop['road_name']?></td>
-                                <td><?=$busStop['latitude']?></td>
-                                <td><?=$busStop['longtitude']?></td>
+                                <td><?=$_bus['bus_name_eng']?></td>
                                 <!--<td>
 								  	<div class="checkboxFive">
-								  		<input type="checkbox" value="<?=$busStop['busstop_no']?>" name="busstop_no[]" />
+								  		<input type="checkbox" value="<?=$bus['bus_no']?>" name="bus_no[]" />
 									  	<!--label for="checkboxFiveInput"></label-->
 								  	<!--</div>
 								</td>!-->
@@ -120,11 +115,6 @@
                             	<td></td>
                             	<td></td>
                             	<td></td>
-                            	<td></td>
-                            	<td></td>
-                            	<td></td>
-                            	<td></td>
-                            	<!--<td><button type="submit" class="btn btn-danger" id="deleteBtn">Delete</button></td> !-->
                             </tr>
                           	</tbody>
                           </table>
@@ -155,9 +145,9 @@
 						<tbody>
 							<?php foreach($result as $row):?>
 								<tr>
-									<td data-title="Bus Stop ID"><?=$row['busstop_no'] ?></td>
-									<td data-title="Bus Stop Name"><?=$row['busstop_name'] ?></td>
-									<td data-title="Bus Stop New Name"><?=$row['busstop_new_name'] ?></td>
+									<td data-title="Bus Stop ID"><?=$row['bus_no'] ?></td>
+									<td data-title="Bus Stop Name"><?=$row['bus_name'] ?></td>
+									<td data-title="Bus Stop New Name"><?=$row['bus_new_name'] ?></td>
 									<td data-title="Road Name"><?=$row['road_name'] ?></td>
 									<td data-title="Latitude"><?=$row['latitude'] ?></td>
 									<td data-title="Longtitude"><?=$row['longtitude'] ?></td>
@@ -177,7 +167,7 @@
 		function changePageSize(pageSize){
 			$('#paging_pagesize').val(pageSize);
 			$('#paging_currentpage').val(1);
-			$('#searchBusStopForm').submit();
+			$('#searchbusForm').submit();
 		}
 		$(function(){
 			$('#pagination-demo').twbsPagination({
@@ -186,7 +176,7 @@
 		        // visiblePages: 7,
 		        onPageClick: function (event, page) {
 		        	$('#paging_currentpage').val(page);
-		        	$('#searchBusStopForm').submit();
+		        	$('#searchbusForm').submit();
 		        }
 		    });
 		});
