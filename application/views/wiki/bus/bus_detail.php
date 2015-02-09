@@ -29,9 +29,7 @@
 			<?php if($bus['bus_id'] != null):
 			?>
 			<div class="col-md-12">
-				<div id="map-canvas" style="height: 400px; width: 100%;"></div>
-				<br/>
-				<br/>
+				<!-- Bus Stop Mapping -->
 			</div>
 			<?php endif; ?>
 			<div class="col-md-12">

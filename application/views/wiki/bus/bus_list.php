@@ -34,17 +34,17 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Bus No.</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" id="txt_name" name="bus_no" placeHolder="Bus Stop Name" value="<?=$filter['bus_no']?>" />
+								<input type="text" class="form-control" id="txt_name" name="bus_no" placeHolder="Bus No" value="<?=$filter['bus_no']?>" />
 							</div>
 						</div>
 						<div class="form-group">
               <label class="col-sm-3 control-label">Bus Thai Name</label>
               <div class="col-sm-3">
-                <input type="text" class="form-control" id="txt_new_name" name="bus_name_th" placeHolder="Bus Stop New Name" value="<?=$filter['bus_name_th']?>" />
+                <input type="text" class="form-control" id="txt_new_name" name="bus_name_th" placeHolder="Bus Thai Name" value="<?=$filter['bus_name_th']?>" />
               </div>
 							<label class="col-sm-3 control-label">Bus English Name</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" id="txt_local_name" name="bus_name_eng" placeHolder="Bus Stop Thai Name" value="<?=$filter['bus_name_eng']?>" />
+								<input type="text" class="form-control" id="txt_local_name" name="bus_name_eng" placeHolder="Bus Thai Name" value="<?=$filter['bus_name_eng']?>" />
 							</div>
 						</div>
 						<div class"form-group">
@@ -88,13 +88,16 @@
                             </thead>
                             <tbody>
                             <?php if(isset($bus)):?>
-                            <?php foreach ($_bus as $key => $bus):?>
+                            <?php foreach ($bus as $key => $_bus):?>
                             <tr>
+                                <td>
+                                  <?=$_bus['bus_id']?>
+                                </td>
                                 <td>
                                 	<?=$_bus['bus_no']?>
                                 </td>
                                 <td>
-                                	<a href="<?=site_url('wiki/bus/show/'.$bus['bus_no'])?>" target="_blank">
+                                	<a href="<?=site_url('wiki/bus/show/'.$_bus['bus_no'])?>" target="_blank">
                                 	<?=$_bus['bus_name_th']?>
                                 	</a>
                                 </td>

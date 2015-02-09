@@ -1,9 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class BusModel extends CI_Model {
-	function searchBusStop($filter=null){
+	function searchBus($filter=null){
 		$filter['bus_id'] = $filter['bus_id'];
 		$filter['bus_name_th'] = $filter['bus_name_th'];
+		$filter['bus_name_eng'] = $filter['bus_name_eng'];
 
 		foreach($filter as $key => $criteria){
 			if(empty($criteria))
